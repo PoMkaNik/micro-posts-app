@@ -1,10 +1,15 @@
-const greeting = 'Hello World';
-console.log(greeting);
+import { http } from './http';
+import { ui } from './ui';
 
-const getData = async (url) => {
-  const response = await fetch(url);
-  const result = await response.json();
-  console.log(result);
+const getPosts = async function () {
+  try {
+    const posts = await http.get('http://localhost:3000/posts');
+    ui.showPosts(posts);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
 };
 
-getData('https://jsonplaceholder.typicode.com/posts');
+// get posts on DOM load
+document.addEventListener('DOMContentLoaded', getPosts);

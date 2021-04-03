@@ -20,6 +20,8 @@
       integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
       crossorigin="anonymous"
     />
+    <!-- custom css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
     <!-- custom js -->
     <script defer src="build/app.bundle.js"></script>
@@ -33,7 +35,7 @@
       </div>
     </nav>
     <div class="container postsContainer">
-      <div class="card card-body card-form">
+      <div class="card card-body card-form mb-3">
         <h1>Say Something</h1>
         <p class="lead">What's on your mind?</p>
         <div class="form-group">
@@ -57,7 +59,14 @@
         <button class="submit btn btn-primary btn-block">Post It</button>
         <span class="form-end"></span>
       </div>
-      <div id="posts"></div>
+      <div id="posts">
+        <!-- <div class="card mb-3">
+          <div class="card-body">
+            <h4 class="card-title">Post One</h4>
+            <p class="card-text">This is post one</p>
+          </div>
+        </div> -->
+      </div>
     </div>
     <footer class="mt-5 p-3 text-center bg-light">MicroPosts &copy;</footer>
   </body>
