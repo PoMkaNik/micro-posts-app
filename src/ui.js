@@ -1,5 +1,6 @@
 class UI {
   constructor() {
+    this.form = document.querySelector('.card-form');
     this.posts = document.querySelector('#posts');
     this.postsContainer = document.querySelector('.postsContainer');
     this.titleInput = document.querySelector('#title');
@@ -29,6 +30,48 @@ class UI {
     });
 
     this.posts.innerHTML = html;
+  }
+
+  fillForm(data) {
+    this.titleInput.value = data.title;
+    this.bodyInput.value = data.body;
+    this.idInput.value = data.id;
+
+    // change form state
+    this.changeFormState('edit');
+  }
+
+  changeFormState(type) {
+    if (type === 'edit') {
+      // change button text
+      this.submitBtn.textContent = 'Update Post!';
+      // change button color
+      this.submitBtn.classList.remove('btn-primary');
+      this.submitBtn.classList.add('btn-warning');
+      // create Cancel button
+      const button = document.createElement('button');
+      button.className = 'btn btn-danger btn-block edit-cancel';
+      button.appendChild(document.createTextNode('Cancel'));
+      // add cancel button to the DOM
+      this.form.insertAdjacentElement('beforeend', button);
+    } else {
+      // change button text
+      this.submitBtn.textContent = 'Post It!';
+      // change button color
+      this.submitBtn.classList.add('btn-primary');
+      this.submitBtn.classList.remove('btn-warning');
+      // remove cancel button
+      const cancelBtn = document.querySelector('.edit-cancel');
+      cancelBtn && cancelBtn.remove();
+      // clear id
+      this.clearIdInput();
+      // clear text fields
+      this.clearFields();
+    }
+  }
+
+  clearIdInput() {
+    this.idInput.value = '';
   }
 
   showAlert(message, className) {
