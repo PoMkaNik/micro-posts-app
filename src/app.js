@@ -11,5 +11,33 @@ const getPosts = async function () {
   }
 };
 
+const submitPost = async function () {
+  try {
+    const data = {
+      title: document.querySelector('#title').value,
+      body: document.querySelector('#body').value,
+    };
+
+    if (!data.title || !data.body) {
+      ui.showAlert('All fields must be filled!', 'alert alert-danger');
+      return;
+    }
+
+    const newPost = await http.post('http://localhost:3000/posts', data);
+    // show alert
+    ui.showAlert('Post added', 'alert alert-success');
+    // clear inputs
+    ui.clearFields();
+    // show posts with just added
+    getPosts();
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+};
+
 // get posts on DOM load
 document.addEventListener('DOMContentLoaded', getPosts);
+
+// add posts functionality
+document.querySelector('.post-submit').addEventListener('click', submitPost);

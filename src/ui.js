@@ -1,6 +1,7 @@
 class UI {
   constructor() {
     this.posts = document.querySelector('#posts');
+    this.postsContainer = document.querySelector('.postsContainer');
     this.titleInput = document.querySelector('#title');
     this.bodyInput = document.querySelector('#body');
     this.idInput = document.querySelector('#id');
@@ -28,6 +29,29 @@ class UI {
     });
 
     this.posts.innerHTML = html;
+  }
+
+  showAlert(message, className) {
+    this.clearAlert();
+    // create alert div
+    const div = document.createElement('div');
+    div.className = className;
+    div.appendChild(document.createTextNode(message));
+    // insert in DOM
+    this.postsContainer.insertBefore(div, this.posts);
+
+    // timeout
+    setTimeout(() => this.clearAlert(), 3000);
+  }
+
+  clearAlert() {
+    const alert = document.querySelector('.alert');
+    alert && alert.remove();
+  }
+
+  clearFields() {
+    this.titleInput.value = '';
+    this.bodyInput.value = '';
   }
 }
 
